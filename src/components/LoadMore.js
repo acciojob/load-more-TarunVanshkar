@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const LoadMore = ({items}) => {
+const LoadMore = ({ items }) => {
 
     const [displayedItems, setDisplayedItems] = useState([]);
     const [page, setPage] = useState(0);
@@ -12,8 +12,14 @@ const LoadMore = ({items}) => {
         const endIndex = startIndex + 10;
         console.log(startIndex, endIndex)
 
-        setDisplayedItems([...displayedItems, ...items.slice(startIndex, endIndex)]);
-        setPage(endIndex);
+        // Load next 10 items asynchronously
+        setTimeout(() => {
+            setDisplayedItems([
+                ...displayedItems,
+                ...items.slice(startIndex, endIndex),
+            ]);
+            setPage(nextPage);
+        }, 500);
     };
 
     return (
